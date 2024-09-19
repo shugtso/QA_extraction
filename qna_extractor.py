@@ -1,7 +1,5 @@
 from pathlib import Path
-import os
-from datasets import load_dataset,Dataset 
-import re
+
 
 
 def preprocess_text(text):
@@ -40,14 +38,15 @@ def get_data_in_dict(text):
 def get_annotated_data(datadic):
     questions = ''
     answers = ''
-    for i in range(len(datadic['question'])):
-        questions+=datadic['question'][i]+'\n'
-        answers+=datadic['answer'][i]+'\n'
+    for question in datadic['question']:
+        questions+=question+'\n'
+    for answer in datadic['answer']:
+        answers+=answer+'\n'
     return questions,answers
 
 if __name__ == '__main__':
 
-    text = Path('test.txt').read_text(encoding='utf-8')
+    text = Path('./test.txt').read_text(encoding='utf-8')
     data_dic = get_data_in_dict(text)
     questions,answers = get_annotated_data(data_dic)
     Path('questions.txt').write_text(questions, encoding='utf-8')
