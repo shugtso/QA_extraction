@@ -50,7 +50,7 @@ def get_qa_pairs(text):
 
 
 if __name__ in '__main__':
-    q_n_a_file_paths = list(Path('./data/standard_Qna').iterdir())
+    q_n_a_file_paths = list(Path('./data/Qan_with_Q_number').iterdir())
     for q_n_a_file_path in q_n_a_file_paths:
         text = q_n_a_file_path.read_text(encoding='utf-8')
         questions, answers = get_qa_pairs(text)
