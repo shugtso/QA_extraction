@@ -52,11 +52,12 @@ def get_qa_pairs(text):
 if __name__ in '__main__':
     q_n_a_file_paths = list(Path('./data/standard_Qna').iterdir())
     for q_n_a_file_path in q_n_a_file_paths:
-        text = q_n_a_file_path.read_text(encoding='utf-8')
-        questions, answers = get_qa_pairs(text)
-        # if len(questions) != len(answers):
-        #     print(f"Warning: Number of questions ({len(questions)}) and answers ({len(answers)}) do not match in file {q_n_a_file_path}")
-        # else:
-        Path(f'./data/Questions/{q_n_a_file_path.stem}.txt').write_text('\n'.join(questions), encoding='utf-8')
-        Path(f'./data/Answers/{q_n_a_file_path.stem}.txt').write_text('\n'.join(answers), encoding='utf-8')
+        if q_n_a_file_path.stem == "BO8995":
+            text = q_n_a_file_path.read_text(encoding='utf-8')
+            questions, answers = get_qa_pairs(text)
+            # if len(questions) != len(answers):
+            #     print(f"Warning: Number of questions ({len(questions)}) and answers ({len(answers)}) do not match in file {q_n_a_file_path}")
+            # else:
+            Path(f'./data/Questions/{q_n_a_file_path.stem}.txt').write_text('\n'.join(questions), encoding='utf-8')
+            Path(f'./data/Answers/{q_n_a_file_path.stem}.txt').write_text('\n'.join(answers), encoding='utf-8')
             
