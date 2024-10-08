@@ -46,8 +46,13 @@ def get_annotated_data(datadic):
 
 if __name__ == '__main__':
 
-    text = Path('./test.txt').read_text(encoding='utf-8')
-    data_dic = get_data_in_dict(text)
-    questions,answers = get_annotated_data(data_dic)
-    Path('questions.txt').write_text(questions, encoding='utf-8')
-    Path('answers.txt').write_text(answers, encoding='utf-8')
+    q_n_a_file_paths = list(Path('./data/random').iterdir())
+    for q_n_a_file_path in q_n_a_file_paths:
+        text = q_n_a_file_path.read_text(encoding='utf-8')
+        data_dic = get_data_in_dict(text)
+        questions,answers = get_annotated_data(data_dic)
+        # if len(questions) != len(answers):
+        #     print(f"Warning: Number of questions ({len(questions)}) and answers ({len(answers)}) do not match in file {q_n_a_file_path}")
+        # else:
+        Path(f'./data/Questions/{q_n_a_file_path.stem}.txt').write_text(questions, encoding='utf-8')
+        Path(f'./data/Answers/{q_n_a_file_path.stem}.txt').write_text(answers, encoding='utf-8')
